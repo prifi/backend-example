@@ -1,0 +1,15 @@
+ html, body, #app {
+    /* border: solid 1px #000000; */
+    min-height: 200px;
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+ }
+ 
+ .el-breadcrumb {
+   margin-bottom: 15px;
+ }
+
+ .el-table {
+   margin: 15px 0px;
+ }

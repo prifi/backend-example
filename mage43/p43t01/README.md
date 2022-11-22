@@ -1,0 +1,40 @@
+## 知识点
+
+- 返回Http及Json响应
+- 视图函数及视图类
+  - 视图类.as_view()本质
+  - 视图函数及视图类方法装饰器(请求方法限制)
+- 中间件请求及响应流程
+- Session和Cookie
+- DRF
+  - 序列化原理及应用
+  - 校验器（字段级、对象级）
+  - 入库（save、update）
+  - ModelSerializer
+  - 外键关系查询及关联字段处理
+- 视图
+  - APIView CRUD及通用类视图(generics,mixins)
+  - 异常(exception)
+  - 分页(pagination)
+- ViewSets 视图集(actions)
+- 路由器(DefaultRoute)
+- 认证和权限
+  - JWT认证
+- 用户模块
+  - CRUD
+  - 搜索过滤
+  - 获取用户信息
+  - 重置密码
+- RBAC权限控制
+  - 权限展示
+  - 角色CRUD
+  - 权限分配 ***
+- 打包部署
+  - setup.py
+  - uwsgi
+- 项目
+  - CDMB
+    - MongoEngine
+  - JumpServer
+    - WehSSH
+  - 审计

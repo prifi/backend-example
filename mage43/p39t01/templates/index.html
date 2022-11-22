@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax测试</title>
+    {% load static %}
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+</head>
+
+<body>
+    <!-- <div id="title"></div> -->
+    <div id="root">
+        <button class="ajaxget">Ajax GET请求</button>
+        <button class="ajaxpost">Ajax POST请求</button>
+        <button class="ajaxpostjson">Ajax POST提交Json请求</button>
+        <button class="ajaxgetjsonp">Ajax GET请求Jsonp测试</button>
+    </div>
+</body>
+
+</html>
+<script>
+    $(function () {
+        // $('#title').html('<h3>Hello Ajax!</h3>')
+
+        // AJAX GET请求 http://127.0.0.1:8000/testget/?a=1&b=2&b=3
+        $('.ajaxget').val('1,2,3')
+        $('.ajaxget').click(function () {
+            // $.get("testget?a=1&b=2&b=3", function (data) {   // 多值组成字典值列表  <QueryDict: {'a': ['1'], 'b': ['2', '3']}>
+            // $.get("testget?querystring=" + $('.ajaxget').val(), function (data) {    // 拼接  <QueryDict: {'querystring': ['1,2,3']}>
+            // $.get("testget", { a: 1, b: 2, b: 3 }, function (data) {  // 字典内相同属性名覆盖取最后一个  <QueryDict: {'a': ['1'], 'b': ['3']}>
+            $.get('http://localhost:8000/testget/?a=1&b=2&b=3', {k1:1, k2:2, k3:3}, function(data) {   // GET跨域
+                console.log(data, '~~~~');
+            });
+        })
+
+        // AJAX POST请求 http://127.0.0.1:8000/testpost
+        $('.ajaxpost').click(function(event) {
+            $.post('http://localhost:8000/testpost/?a=1&b=2&b=3', {p1:100, p2:200, p2:300}, function(data, status) {  // POST跨域
+                console.log(data, status, '----');
+            })
+        })
+
+        // AJAX POST提交JSON请求
+        $('.ajaxpostjson').click(function(event) {
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify({p1:100, p2:200, p2:300}),
+                url: 'http://localhost:8000/testpostjson/?k1=v1&k2=v2&k2=v3',  // POST跨域json
+                contentType: 'application/json',
+                success:function(data) {  // 成功回调
+                    console.log(data);
+                }
+            })
+        })
+
+        // AJAX Jsonp GET请求
+        $('.ajaxgetjsonp').click(function(event) {
+            $.ajax({
+                type: 'GET',
+                dataType: 'jsonp',
+                // json: 'cb',  // jsonp查询字符串参数名，默认 ?callback
+                // jsonpCallback: 'jsonpcallback',  // 指定返回后调用的函数名, cb=xxx, 不指定使用随机函数名
+                url: 'http://localhost:8000/jsonp',
+                success:function(data) {
+                    console.log(data, '!!!!');
+                }
+            })
+        })
+    })
+</script>
+
+<!-- Jsonp请求 -->
+<!-- <script src="http://localhost:8000/jsonp/?cb=jsonpCallback"></script>
+<script>
+    function jsonpCallback(data) {
+        console.log(data, '++++');
+    }
+</script> -->
+
