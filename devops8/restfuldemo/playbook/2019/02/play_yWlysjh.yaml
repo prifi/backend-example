@@ -1,0 +1,10 @@
+---                                                                                                                                                                            
+- hosts: all 
+  become_user: root
+  gather_facts: no
+  tasks:
+  - name: touch 20190217.txt
+    file: path=/tmp/20190217.txt state=touch  mode=0777
+  
+  - name: touch 20190217.txt
+    file: path=/tmp/20190217.txt state=touchs  mode=0777
