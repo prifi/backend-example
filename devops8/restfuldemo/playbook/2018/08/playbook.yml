@@ -1,6 +1,0 @@
----                                                                                         
-- hosts: all
-  gather_facts: no
-  tasks:
-  - name: touch hhh.txt
-    file: path=/tmp/hhh.txt state=touch  mode=0777
