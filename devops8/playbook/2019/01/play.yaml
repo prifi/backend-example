@@ -1,0 +1,10 @@
+---                                                                                                                                                                            
+- hosts: all 
+  become_user: root
+  gather_facts: no
+  tasks:
+  - name: touch book.txt
+    file: path=/tmp/book.txt state=touch  mode=0777
+  
+  - name: touch book.txt
+    file: path=/tmp/book.txt state=touchs  mode=0777
